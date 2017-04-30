@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => 'mysql',
+    'default' => env('OCTOBER_DB_DRIVER', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'port'      => '',
-            'database'  => 'database',
-            'username'  => 'root',
-            'password'  => '',
+            'host'      => env('OCTOBER_DB_HOST', 'mysql'),
+            'port'      => env('OCTOBER_DB_PORT', 3306),
+            'database'  => env('OCTOBER_DB_NAME', 'october_cms'),
+            'username'  => env('OCTOBER_DB_USER', 'root'),
+            'password'  => env('OCTOBER_DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -66,11 +66,11 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => 'localhost',
-            'port'     => '',
-            'database' => 'database',
-            'username' => 'root',
-            'password' => '',
+            'host'     => env('OCTOBER_DB_HOST', 'postgres'),
+            'port'     => env('OCTOBER_DB_PORT', 5432),
+            'database' => env('OCTOBER_DB_NAME', 'october_cms'),
+            'username' => env('OCTOBER_DB_USER', 'postgres'),
+            'password' => env('OCTOBER_DB_PASSWORD', ''),
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
@@ -117,10 +117,10 @@ return [
         'cluster' => false,
 
         'default' => [
-            'host'     => '127.0.0.1',
-            'password' => null,
-            'port'     => 6379,
-            'database' => 0,
+            'host'     => env('REDIS_HOST', 'redis'),
+            'port'     => env('REDIS_PORT', 6379),
+            'password' => env('REDIS_PASSWORD', null),
+            'database' => 0
         ],
 
     ],

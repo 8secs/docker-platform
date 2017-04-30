@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => 'file',
+    'driver' => env('OCTOBER_SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => env('OCTOBER_SESSION_LIFETIME', 120),
 
     'expire_on_close' => false,
 
@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => env('OCTOBER_SESSION_ENCRYPT', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'connection' => null,
+    'connection' => env('OCTOBER_SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => env('OCTOBER_SESSION_TABLE', 'sessions'),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'cookie' => 'october_session',
+    'cookie' => env('OCTOBER_SESSION_COOKIE', 'october_session'),
 
     /*
     |--------------------------------------------------------------------------
@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'path' => '/',
+    'path' => env('OCTOBER_SESSION_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +135,7 @@ return [
     |
     */
 
-    'domain' => null,
+    'domain' => env('OCTOBER_SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -148,6 +148,6 @@ return [
     |
     */
 
-    'secure' => false,
+    'secure' => env('OCTOBER_SESSION_SECURE', false),
 
 ];

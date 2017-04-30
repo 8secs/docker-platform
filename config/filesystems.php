@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => env('OCTOBER_FILESYSTEMS_DEFAULT', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'cloud' => 's3',
+    'cloud' => env('OCTOBER_FILESYSTEMS_CLOUD', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,23 +45,24 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
+            'root'   => storage_path().'/app',
         ],
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key'    => env('OCTOBER_FILESYSTEMS_DISKS_S3_KEY', 'your-key'),
+            'secret' => env('OCTOBER_FILESYSTEMS_DISKS_S3_SECRET', 'your-secret'),
+            'region' => env('OCTOBER_FILESYSTEMS_DISKS_S3_REGION', 'your-region'),
+            'bucket' => env('OCTOBER_FILESYSTEMS_DISKS_S3_BUCKET', 'your-bucket'),
+            'endpoint' => env('OCTOBER_FILESYSTEMS_DISKS_S3_ENDPOINT')
         ],
 
         'rackspace' => [
             'driver'    => 'rackspace',
-            'username'  => 'your-username',
-            'key'       => 'your-key',
-            'container' => 'your-container',
-            'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
+            'username'  => env('OCTOBER_FILESYSTEMS_DISKS_RACKSPACE_USERNAME', 'your-username'),
+            'key'       => env('OCTOBER_FILESYSTEMS_DISKS_RACKSPACE_KEY', 'your-key'),
+            'container' => env('OCTOBER_FILESYSTEMS_DISKS_RACKSPACE_CONTAINER', 'your-container'),
+            'endpoint'  => env('OCTOBER_FILESYSTEMS_DISKS_RACKSPACE_ENDPOINT', 'https://identity.api.rackspacecloud.com/v2.0/'),
             'region'    => 'IAD',
         ],
 

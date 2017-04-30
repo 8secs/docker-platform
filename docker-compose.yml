@@ -1,0 +1,30 @@
+version: '2'
+services:
+  web:
+    image: "dragontek/octobercms"
+    ports:
+     - "8080:80"
+    depends_on:
+     - mysql
+     - memcached
+     - redis
+    environment:
+     - GIT_HOSTS=gitlab.com
+     - GIT_THEMES=git@gitlab.com:path/mytheme.git
+     - OCTOBER_CMS_ACTIVE_THEME=mytheme
+     - OCTOBER_PLUGINS=October.Drivers;RainLab.Blog;RainLab.Forum;RainLab.Location;RainLab.Translate;RainLab.Pages;RainLab.User;RainLab.GoogleAnalytics;
+     - OCTOBER_DB_DRIVER=mysql
+     - OCTOBER_DB_HOST=mysql
+     - OCTOBER_DB_PASSWORD=root
+     - OCTOBER_CACHE_DEFAULT=memcached
+     - OCTOBER_SESSION_DRIVER=redis
+    volumes:
+     - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+  mysql:
+    image: "maysql"
+    environment:
+     - MYSQL_PASSWORD=root
+  memcached:
+    image: "memcached"
+  redis:
+    image: "redis"

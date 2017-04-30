@@ -15,23 +15,23 @@ return [
     */
 
     'mailgun' => [
-        'domain' => '',
-        'secret' => '',
+        'domain' => getenv('OCTOBER_SERVICES_MAILGUN_DOMAIN') ?: '',
+        'secret' => getenv('OCTOBER_SERVICES_MAILGUN_SECRET') ?: '',
     ],
 
     'mandrill' => [
-        'secret' => '',
+        'secret' => getenv('OCTOBER_SERVICES_MANDRILL_SECRET') ?: '',
     ],
 
     'ses' => [
-        'key' => '',
-        'secret' => '',
-        'region' => 'us-east-1',
+        'key' => getenv('OCTOBER_SERVICES_SES_KEY') ?: '',
+        'secret' => getenv('OCTOBER_SERVICES_SES_SECRET') ?: '',
+        'region' => getenv('OCTOBER_SERVICES_SES_REGION') ?: 'us-east-1',
     ],
 
     'stripe' => [
-        'model'  => 'User',
-        'secret' => '',
+        'model'  => getenv('OCTOBER_SERVICES_STRIPE_MODEL') ?: 'User',
+        'secret' => getenv('OCTOBER_SERVICES_STRIPE_SECRET') ?: '',
     ],
 
 ];

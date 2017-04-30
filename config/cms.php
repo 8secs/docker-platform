@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Bleeding edge updates
+    |--------------------------------------------------------------------------
+    |
+    | If you are developing with October, it is important to have the latest
+    | code base, set this value to 'true' to tell the platform to download
+    | and use the development copies of core files and plugins.
+    |
+    */
+
+    'edgeUpdates' => getenv('OCTOBER_CMS_EDGE_UPDATES') ?: false,
+
+    /*
+    |--------------------------------------------------------------------------
     | Specifies the default CMS theme.
     |--------------------------------------------------------------------------
     |
@@ -11,58 +24,18 @@ return [
     |
     */
 
-    'activeTheme' => 'demo',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Bleeding edge updates
-    |--------------------------------------------------------------------------
-    |
-    | If you are developing with October, it is important to have the latest
-    | code base. Set this value to 'true' to tell the platform to download
-    | and use the development copies of core files and plugins.
-    |
-    */
-
-    'edgeUpdates' => false,
+    'activeTheme' => getenv('OCTOBER_CMS_ACTIVE_THEME') ?: 'demo',
 
     /*
     |--------------------------------------------------------------------------
     | Back-end URI prefix
     |--------------------------------------------------------------------------
     |
-    | Specifies the URL name used for accessing back-end pages.
-    | For example: backend -> http://localhost/backend
+    | Specifies the URI prefix used for accessing back-end pages.
     |
     */
 
-    'backendUri' => 'backend',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Back-end force HTTPS security
-    |--------------------------------------------------------------------------
-    |
-    | Use this setting to force a secure protocol when accessing any back-end
-    | pages, including the authentication pages. If set to null, this setting
-    | is enabled when debug mode (app.debug) is disabled.
-    |
-    */
-
-    'backendForceSecure' => null,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Back-end timezone
-    |--------------------------------------------------------------------------
-    |
-    | This acts as the default setting for a back-end user's timezone. This can
-    | be changed by the user at any time using the backend preferences. All
-    | dates displayed in the back-end will be converted to this timezone.
-    |
-    */
-
-    'backendTimezone' => 'UTC',
+    'backendUri' => getenv('OCTOBER_CMS_BACKEND_URI') ?: 'backend',
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +71,7 @@ return [
     |
     */
 
-    'disableCoreUpdates' => false,
+    'disableCoreUpdates' => getenv('OCTOBER_CMS_DISABLE_CORE_UPDATES') ?: false,
 
     /*
     |--------------------------------------------------------------------------
@@ -123,7 +96,7 @@ return [
     |
     */
 
-    'enableRoutesCache' => false,
+    'enableRoutesCache' => getenv('OCTOBER_CMS_ENABLE_ROUTES_CACHE') ?: false,
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +109,7 @@ return [
     |
     */
 
-    'urlCacheTtl' => 10,
+    'urlCacheTtl' => getenv('OCTOBER_CMS_URL_CACHE_TTL') ?: 10,
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +122,7 @@ return [
     |
     */
 
-    'parsedPageCacheTTL' => 10,
+    'parsedPageCacheTTL' => getenv('OCTOBER_CMS_PARSED_PAGE_CACHE_TTL') ?:  10,
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +136,7 @@ return [
     |
     */
 
-    'enableAssetCache' => false,
+    'enableAssetCache' => getenv('OCTOBER_CMS_ENABLE_ASSET_CACHE') ?: false,
 
     /*
     |--------------------------------------------------------------------------
@@ -177,21 +150,7 @@ return [
     |
     */
 
-    'enableAssetMinify' => null,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Check import timestamps when combining assets
-    |--------------------------------------------------------------------------
-    |
-    | If deep hashing is enabled, the combiner cache will be reset when a change
-    | is detected on imported files, in addition to those referenced directly.
-    | This will cause slower page performance. If set to null, deep hashing
-    | is used when debug mode (app.debug) is enabled.
-    |
-    */
-
-    'enableAssetDeepHashing' => null,
+    'enableAssetMinify' => getenv('OCTOBER_CMS_ENABLE_ASSET_MINIFY') ?: null,
 
     /*
     |--------------------------------------------------------------------------
@@ -239,15 +198,15 @@ return [
     'storage' => [
 
         'uploads' => [
-            'disk'   => 'local',
-            'folder' => 'uploads',
-            'path'   => '/storage/app/uploads',
+            'disk'   => getenv('OCTOBER_CMS_STORAGE_UPLOADS_DISK') ?: 'local',
+            'folder' => getenv('OCTOBER_CMS_STORAGE_UPLOADS_FOLDER') ?: 'uploads',
+            'path'   => getenv('OCTOBER_CMS_STORAGE_UPLOADS_PATH') ?: '/storage/app/uploads',
         ],
 
         'media' => [
-            'disk'   => 'local',
-            'folder' => 'media',
-            'path'   => '/storage/app/media',
+            'disk'   => getenv('OCTOBER_CMS_STORAGE_MEDIA_DISK') ?: 'local',
+            'folder' => getenv('OCTOBER_CMS_STORAGE_MEDIA_FOLDER') ?: 'media',
+            'path'   => getenv('OCTOBER_CMS_STORAGE_MEDIA_PATH') ?: '/storage/app/media',
         ],
 
     ],
@@ -262,7 +221,7 @@ return [
     |
     */
 
-    'convertLineEndings' => false,
+    'convertLineEndings' => getenv('OCTOBER_CMS_CONVERT_LINE_ENDINGS') ?: false,
 
     /*
     |--------------------------------------------------------------------------
@@ -278,7 +237,7 @@ return [
     |
     */
 
-    'linkPolicy' => 'detect',
+    'linkPolicy' => getenv('OCTOBER_CMS_LINK_POLICY') ?: 'detect',
 
     /*
     |--------------------------------------------------------------------------
@@ -293,19 +252,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Safe mode
-    |--------------------------------------------------------------------------
-    |
-    | If safe mode is enabled, the PHP code section is disabled in the CMS
-    | for security reasons. If set to null, safe mode is enabled when
-    | debug mode (app.debug) is disabled.
-    |
-    */
-
-    'enableSafeMode' => null,
-
-    /*
-    |--------------------------------------------------------------------------
     | Cross Site Request Forgery (CSRF) Protection
     |--------------------------------------------------------------------------
     |
@@ -314,19 +260,6 @@ return [
     |
     */
 
-    'enableCsrfProtection' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Force bytecode invalidation
-    |--------------------------------------------------------------------------
-    |
-    | When using OPcache with opcache.validate_timestamps set to 0 or APC
-    | with apc.stat set to 0 and Twig cache enabled, clearing the template
-    | cache won't update the cache, set to true to get around this.
-    |
-    */
-
-    'forceBytecodeInvalidation' => true,
+    'enableCsrfProtection' => getenv('OCTOBER_CMS_ENABLE_CSRF_PROTECTION') ?: false,
 
 ];

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'debug' => true,
+    'debug' => env('OCTOBER_APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('OCTOBER_APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('OCTOBER_APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('OCTOBER_APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,9 +81,9 @@ return [
     |
     */
 
-    'key' => 'CHANGE_ME!!!!!!!!!!!!!!!!!!!!!!!',
+    'key' => env('OCTOBER_APP_KEY', 'V5tQ2e0WMMSoG57AlhLSnh4sqjyG3VNk'),
 
-    'cipher' => 'AES-256-CBC',
+    'cipher' => env('OCTOBER_APP_CIPHER', 'AES-256-CBC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     |
     */
 
-    'log' => 'single',
+    'log' => env('OCTOBER_APP_LOG', 'single'),
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
     |
     */
 
-    'providers' => array_merge(include(base_path('modules/system/providers.php')), [
+    'providers' => array_merge(include(base_path().'/modules/system/providers.php'), [
 
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
@@ -129,7 +129,7 @@ return [
     |
     */
 
-    'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
+    'aliases' => array_merge(include(base_path().'/modules/system/aliases.php'), [
 
         // 'Str' => 'Illuminate\Support\Str', // Example
 
